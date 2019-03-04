@@ -93,10 +93,10 @@ public class PaymentServiceTest {
     private static final AspspConsentData ASPSP_CONSENT_DATA = new AspspConsentData(new byte[0], PAYMENT_ID);
     private static final PsuIdData PSU_ID_DATA = new PsuIdData(null, null, null, null);
     private static final SpiPsuData SPI_PSU_DATA = new SpiPsuData(null, null, null, null);
-    private static final ValidationResult VALIDATION_RESULT_SUCCESS = new ValidationResult(true, null);
-    private static final ValidationResult VALIDATION_RESULT_WRONG_PAYMENT_TYPE = new ValidationResult(false, new MessageError(PIS_405, TppMessageInformation.of(SERVICE_INVALID_405, "Service invalid for adressed payment")));
-    private static final ValidationResult VALIDATION_RESULT_WRONG_PAYMENT_PRODUCT = new ValidationResult(false, new MessageError(PIS_403, TppMessageInformation.of(PRODUCT_INVALID, "Payment product invalid for addressed payment")));
-    private static final ValidationResult VALIDATION_RESULT_WRONG_PAYMENT_ID = new ValidationResult(false, new MessageError(PIS_404, TppMessageInformation.of(RESOURCE_UNKNOWN_404, "Payment not found")));
+    private static final ValidationResult VALIDATION_RESULT_SUCCESS = ValidationResult.valid();
+    private static final ValidationResult VALIDATION_RESULT_WRONG_PAYMENT_TYPE = ValidationResult.invalid(new MessageError(PIS_405, TppMessageInformation.of(SERVICE_INVALID_405, "Service invalid for adressed payment")));
+    private static final ValidationResult VALIDATION_RESULT_WRONG_PAYMENT_PRODUCT = ValidationResult.invalid(new MessageError(PIS_403, TppMessageInformation.of(PRODUCT_INVALID, "Payment product invalid for addressed payment")));
+    private static final ValidationResult VALIDATION_RESULT_WRONG_PAYMENT_ID = ValidationResult.invalid(new MessageError(PIS_404, TppMessageInformation.of(RESOURCE_UNKNOWN_404, "Payment not found")));
     private final List<String> ERROR_MESSAGE_TEXT = Arrays.asList("message 1", "message 2", "message 3");
     private final SinglePayment SINGLE_PAYMENT_OK = getSinglePayment(IBAN, AMOUNT);
 

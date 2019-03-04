@@ -18,6 +18,7 @@ package de.adorsys.psd2.xs2a.service.validator;
 
 import de.adorsys.psd2.xs2a.exception.MessageError;
 import lombok.Value;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @Value
@@ -29,6 +30,19 @@ public class ValidationResult {
      */
     @Nullable
     private MessageError messageError;
+
+    public static ValidationResult valid() {
+        return new ValidationResult(true, null);
+    }
+
+    public static ValidationResult invalid(@NotNull MessageError messageError) {
+        return new ValidationResult(false, messageError);
+    }
+
+    private ValidationResult(boolean valid, @Nullable MessageError messageError) {
+        this.valid = valid;
+        this.messageError = messageError;
+    }
 
     public boolean isNotValid() {
         return !valid;

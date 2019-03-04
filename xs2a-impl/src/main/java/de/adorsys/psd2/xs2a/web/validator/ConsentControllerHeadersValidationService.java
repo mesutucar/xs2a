@@ -54,9 +54,9 @@ public class ConsentControllerHeadersValidationService {
         String tppRedirectUri = httpServletRequest.getHeader(TPP_REDIRECT_URI);
 
         if (tppRedirectUriValidationService.isNotValid(tppRedirectPreferred, tppRedirectUri)) {
-            return new ValidationResult(false, new MessageError(ErrorType.AIS_400, TppMessageInformation.of(FORMAT_ERROR)));
+            return ValidationResult.invalid(new MessageError(ErrorType.AIS_400, TppMessageInformation.of(FORMAT_ERROR)));
         }
 
-        return new ValidationResult(true, null);
+        return ValidationResult.valid();
     }
 }

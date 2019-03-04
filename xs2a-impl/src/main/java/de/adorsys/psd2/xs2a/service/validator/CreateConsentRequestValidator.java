@@ -55,23 +55,23 @@ public class CreateConsentRequestValidator {
      */
     public ValidationResult validateRequest(CreateConsentReq request) {
         if (isNotSupportedGlobalConsentForAllPsd2(request)) {
-            return new ValidationResult(false, new MessageError(ErrorType.AIS_400, TppMessageInformation.of(PARAMETER_NOT_SUPPORTED)));
+            return ValidationResult.invalid(new MessageError(ErrorType.AIS_400, TppMessageInformation.of(PARAMETER_NOT_SUPPORTED)));
         }
         if (isNotSupportedBankOfferedConsent(request)) {
-            return new ValidationResult(false, new MessageError(ErrorType.AIS_405, TppMessageInformation.of(SERVICE_INVALID_405)));
+            return ValidationResult.invalid(new MessageError(ErrorType.AIS_405, TppMessageInformation.of(SERVICE_INVALID_405)));
         }
         if (!isValidExpirationDate(request.getValidUntil())) {
-            return new ValidationResult(false, new MessageError(ErrorType.AIS_400, TppMessageInformation.of(PERIOD_INVALID)));
+            return ValidationResult.invalid(new MessageError(ErrorType.AIS_400, TppMessageInformation.of(PERIOD_INVALID)));
         }
 
         if (isNotValidFrequencyForRecurringIndicator(request.isRecurringIndicator(), request.getFrequencyPerDay())) {
-            return new ValidationResult(false, new MessageError(ErrorType.AIS_400, TppMessageInformation.of(FORMAT_ERROR)));
+            return ValidationResult.invalid(new MessageError(ErrorType.AIS_400, TppMessageInformation.of(FORMAT_ERROR)));
         }
 
         if (isNotSupportedAvailableAccounts(request)) {
-            return new ValidationResult(false, new MessageError(ErrorType.AIS_405, TppMessageInformation.of(SERVICE_INVALID_405)));
+            return ValidationResult.invalid(new MessageError(ErrorType.AIS_405, TppMessageInformation.of(SERVICE_INVALID_405)));
         }
-        return new ValidationResult(true, null);
+        return ValidationResult.valid();
     }
 
     private boolean isNotSupportedGlobalConsentForAllPsd2(CreateConsentReq request) {

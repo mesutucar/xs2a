@@ -49,18 +49,18 @@ public class GetCommonPaymentByIdResponseValidator {
     public ValidationResult validateRequest(@Nullable PisCommonPaymentResponse pisCommonPayment, PaymentType paymentType, String paymentProduct) {
         //In case of removing this validation please, place it back before all invocations of this class and remove @Nullable from the method parameter
         if (pisCommonPayment == null) {
-            return new ValidationResult(false, new MessageError(ErrorType.PIS_404, TppMessageInformation.of(RESOURCE_UNKNOWN_404, "Payment not found")));
+            return ValidationResult.invalid(new MessageError(ErrorType.PIS_404, TppMessageInformation.of(RESOURCE_UNKNOWN_404, "Payment not found")));
         }
 
         if (isPaymentTypeIncorrect(paymentType, pisCommonPayment)) {
-            return new ValidationResult(false, new MessageError(ErrorType.PIS_405, TppMessageInformation.of(SERVICE_INVALID_405, "Service invalid for addressed payment")));
+            return ValidationResult.invalid(new MessageError(ErrorType.PIS_405, TppMessageInformation.of(SERVICE_INVALID_405, "Service invalid for addressed payment")));
         }
 
         if (isPaymentProductIncorrect(paymentProduct, pisCommonPayment)) {
-            return new ValidationResult(false, new MessageError(ErrorType.PIS_403, TppMessageInformation.of(PRODUCT_INVALID, "Payment product invalid for addressed payment")));
+            return ValidationResult.invalid(new MessageError(ErrorType.PIS_403, TppMessageInformation.of(PRODUCT_INVALID, "Payment product invalid for addressed payment")));
         }
 
-        return new ValidationResult(true, null);
+        return ValidationResult.valid();
     }
 
     private boolean isPaymentTypeIncorrect(PaymentType paymentType, PisCommonPaymentResponse commonPaymentResponse) {
