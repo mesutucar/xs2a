@@ -26,8 +26,6 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 
-import java.util.UUID;
-
 import static de.adorsys.psd2.xs2a.domain.MessageErrorCode.FORMAT_ERROR;
 import static de.adorsys.psd2.xs2a.web.validator.constants.Xs2aHeaderConstant.TPP_REDIRECT_PREFERRED;
 import static de.adorsys.psd2.xs2a.web.validator.constants.Xs2aHeaderConstant.TPP_REDIRECT_URI;
@@ -44,8 +42,6 @@ public class PaymentControllerHeadersValidationService {
     /**
      * Validates headers of initiatePayment(...) methods of PaymentController.
      * Headers are taken from HttpServletRequest.
-     * @see de.adorsys.psd2.xs2a.web.controller.PaymentController#initiatePayment(UUID, String, String, String, String, String, String, String, byte[], String, String, String, String, String, String, String, String, boolean, String, String, String, String, String, String, String, UUID, String)
-     * @see de.adorsys.psd2.xs2a.web.controller.PaymentController#initiatePayment(Object, UUID, String, String, String, String, String, byte[], String, String, String, String, String, boolean, String, String, boolean, String, String, String, String, String, String, String, UUID, String)
      *
      * @return ValidationResult: contains MessageError in case of not valid headers
      */

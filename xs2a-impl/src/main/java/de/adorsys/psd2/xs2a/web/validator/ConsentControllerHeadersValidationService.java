@@ -16,7 +16,6 @@
 
 package de.adorsys.psd2.xs2a.web.validator;
 
-import de.adorsys.psd2.model.Consents;
 import de.adorsys.psd2.xs2a.domain.TppMessageInformation;
 import de.adorsys.psd2.xs2a.exception.MessageError;
 import de.adorsys.psd2.xs2a.service.mapper.psd2.ErrorType;
@@ -26,8 +25,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
-
-import java.util.UUID;
 
 import static de.adorsys.psd2.xs2a.domain.MessageErrorCode.FORMAT_ERROR;
 import static de.adorsys.psd2.xs2a.web.validator.constants.Xs2aHeaderConstant.TPP_REDIRECT_PREFERRED;
@@ -45,7 +42,6 @@ public class ConsentControllerHeadersValidationService {
     /**
      * Validates them of createConsent(...) method of ConsentController.
      * Headers are taken from HttpServletRequest.
-     * @see de.adorsys.psd2.xs2a.web.controller.ConsentController#createConsent(UUID, Consents, String, String, byte[], String, String, String, String, boolean, String, String, boolean, String, String, String, String, String, String, String, String, UUID, String)
      *
      * @return ValidationResult: contains MessageError in case of not valid headers
      */
