@@ -126,9 +126,9 @@ public class PaymentController implements PaymentApi {
             return responseErrorMapper.generateErrorResponse(responseObject.getError());
         }
 
-        ValidationResult consentValidationResult = headersValidationService.validateInitiatePayment();
-        if (consentValidationResult.isNotValid()) {
-            return responseErrorMapper.generateErrorResponse(consentValidationResult.getMessageError());
+        ValidationResult headersValidationResult = headersValidationService.validateInitiatePayment();
+        if (headersValidationResult.isNotValid()) {
+            return responseErrorMapper.generateErrorResponse(headersValidationResult.getMessageError());
         }
 
         PsuIdData psuData = new PsuIdData(PSU_ID, psUIDType, psUCorporateID, psUCorporateIDType);
@@ -161,9 +161,9 @@ public class PaymentController implements PaymentApi {
             return responseErrorMapper.generateErrorResponse(responseObject.getError());
         }
 
-        ValidationResult consentValidationResult = headersValidationService.validateInitiatePayment();
-        if (consentValidationResult.isNotValid()) {
-            return responseErrorMapper.generateErrorResponse(consentValidationResult.getMessageError());
+        ValidationResult headersValidationResult = headersValidationService.validateInitiatePayment();
+        if (headersValidationResult.isNotValid()) {
+            return responseErrorMapper.generateErrorResponse(headersValidationResult.getMessageError());
         }
 
         PsuIdData psuData = new PsuIdData(PSU_ID, psUIDType, psUCorporateID, psUCorporateIDType);
