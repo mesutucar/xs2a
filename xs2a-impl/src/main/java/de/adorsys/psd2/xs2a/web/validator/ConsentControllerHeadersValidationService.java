@@ -40,7 +40,7 @@ public class ConsentControllerHeadersValidationService {
     private final TppRedirectUriValidationService tppRedirectUriValidationService;
 
     /**
-     * Validates them of createConsent(...) method of ConsentController.
+     * Validates headers of createConsent(...) method of ConsentController.
      * Headers are taken from HttpServletRequest.
      *
      * @return ValidationResult: contains MessageError in case of not valid headers

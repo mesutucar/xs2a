@@ -138,7 +138,7 @@ public class ConsentControllerTest {
         //When:
         ResponseEntity responseEntity = consentController.createConsent(null, consents,
             null, null, null, CORRECT_PSU_ID, null, null,
-            null, false, null, null,
+            null, true, null, null,
             EXPLICIT_PREFERRED, null, null, null, null,
             null, null, null, null, null,
             null);
